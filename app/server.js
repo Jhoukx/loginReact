@@ -1,8 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import appLogin from './routes/login.routes.js';
-import appRegister from './routes/register.routes.js';
 import cors from 'cors';
+import appUser from './routes/user.routes.js';
 
 dotenv.config();
 
@@ -11,8 +10,7 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-server.use('/login', appLogin);
-server.use('/register', appRegister);
+server.use('/account', appUser);
 
 const config = JSON.parse(process.env.MY_SERVER);
 
