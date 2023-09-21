@@ -1,5 +1,7 @@
 import { Router } from "express";
+import { collectionGen } from "../connection/connection.js";
 
+const user = await collectionGen("users");
 const appUser = Router();
 
 appUser.post('/login', async (req, res) => {
