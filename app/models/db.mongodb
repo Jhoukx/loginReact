@@ -1,0 +1,15 @@
+use('loginReact');
+db.User.insertMany([
+    {
+        id_user:1,
+        username:"John Doe Smith",
+        email: "johndoe@gmail.com",
+        password: "johndoe123"
+    },
+    {
+        id_user:2,
+        username: "Pepito Alfonso Rodriguez",
+        email: "pepito@gmail.com",
+        password: "elPepito123"
+    }
+]);
