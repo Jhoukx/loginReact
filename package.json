@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --quiet app/server.js",
+    "start": "nodemon app/server.js",
     "dev": "vite",
     "build": "vite build"
   },
