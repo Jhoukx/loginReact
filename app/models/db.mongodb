@@ -1,4 +1,7 @@
 use('loginReact');
+db.createCollection("User");
+db.User.createIndex({ email: 1 }, { unique: true });
+db.User.createIndex({ username: 1 }, { unique: true });
 db.User.insertMany([
     {
         id_user:1,
