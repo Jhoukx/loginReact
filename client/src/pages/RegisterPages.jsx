@@ -1,4 +1,5 @@
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import {registerRequest} from '../../api/auth.js';
 function RegisterPages() {
   const { register,handleSubmit } = useForm();
 
@@ -6,10 +7,11 @@ function RegisterPages() {
     <>
       <h1>Register</h1>
       <form
-        onSubmit={handleSubmit((values) => {
-          console.log(values);
+        onSubmit={handleSubmit(async(values) => {
+         const res =  await registerRequest(values);
+         console.log(res);
         })}
-      >
+      > 
         <input
           type="text"
           placeholder="Username"
