@@ -18,7 +18,7 @@ function LoginPage() {
         <br />
         <button >Log in</button>
         <p>
-          If you dont have a account create one :D <a href="/register">Register</a>
+          Dont have a account? <a href="/register">Register</a>
         </p>
       </div>
     </>
