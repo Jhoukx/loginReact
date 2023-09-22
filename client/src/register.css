@@ -1,0 +1,14 @@
+.textitos{
+    color: rgb(228, 72, 72);
+}
+.credentialFailed{
+    color: rgb(253, 253, 253);
+    background-color: rgba(247, 82, 82, 0.726);
+    padding: 1rem;
+    border-radius: 3px;
+}
+
+.startButton{
+    background-color: #213547;
+    color: white;
+}
