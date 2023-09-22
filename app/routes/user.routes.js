@@ -10,9 +10,17 @@ appUser.post('/login', async (req, res) => {
 });
 appUser.post('/register', async (req, res) => {
     try {
-        let response = await user.findOne({ email: req.body.email });
-        //Verify that is a new user
-        if (response) return res.status(409).json({ status: 409, message: "Email is not available" })
+        //*Verify credentials
+
+        //Verify username 
+        let isUsernameInUse = await user.findOne({ username: req.body.username });
+        if (isUsernameInUse) return res.status(409).json({ status: 409, message: "username is alredy in use" })
+        
+        //Verify email user
+        let isEmailInUse = await user.findOne({ email: req.body.email });
+        if (isEmailInUse) return res.status(409).json({ status: 409, message: "Email is alredy in use" })
+
+
         //insert user into User collection
         const inserUser = await user.insertOne(req.body);
         //Create JWT
