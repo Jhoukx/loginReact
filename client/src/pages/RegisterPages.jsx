@@ -1,16 +1,24 @@
 import { useForm } from 'react-hook-form'
-import {registerRequest} from '../../api/auth.js';
+import { useAuth } from '../context/authContext';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 function RegisterPages() {
-  const { register,handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
+  const { signUp, isAuthenticated } = useAuth();
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    if (isAuthenticated) navigate("/profile") 
+  }, [isAuthenticated])
+
+  const onSubmit = handleSubmit(async (values) => {
+    signUp(values);
+  })
   return (
     <>
       <h1>Register</h1>
       <form
-        onSubmit={handleSubmit(async(values) => {
-         const res =  await registerRequest(values);
-         console.log(res);
-        })}
+        onSubmit={onSubmit}
       > 
         <input
           type="text"
