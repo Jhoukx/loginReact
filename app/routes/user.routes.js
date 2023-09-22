@@ -19,7 +19,7 @@ appUser.post('/register', async (req, res) => {
         const token = await createAccessToken({ id: inserUser.insertedId })
 
         res.cookie('token', token)
-        res.json({ status: 200, message: "User created successfully" })
+        res.json(req.body)
     } catch (error) {
         res.status(500).json({message: error.message})
     }
