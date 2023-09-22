@@ -34,7 +34,7 @@ function RegisterPages() {
         <br />
         <br />
         <button type="submit">Register</button>
-        <p>Already have a account? <a href="/login">Log in </a></p>
+        <p>Already have a account? <a href="/account/login">Log in </a></p>
       </form>
     </>
   );
