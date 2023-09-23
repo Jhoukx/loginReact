@@ -1,5 +1,5 @@
 import { createContext, useState,useContext } from "react";
-import {registerRequest} from '../../api/auth.js';
+import {loginRequest, registerRequest} from '../../api/auth.js';
 
 export const AuthContext = createContext();
 
@@ -22,6 +22,15 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true)
         } catch (error) {
             setErrors(error.response.data.message)
+        }
+    }
+
+    const signIn = async (user) => {
+        try {
+            const res = await loginRequest(user);
+            console.log(res.data);
+        } catch (error) {
+            console.log(error);
         }
     }
     return (

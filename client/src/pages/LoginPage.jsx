@@ -1,6 +1,12 @@
+import { useForm } from "react-hook-form";
 import reactLogo from "../assets/react.svg";
 
 function LoginPage() {
+  const { register,handleSubmit,formState:{errors}} = useForm();
+
+  const onSubmit = handleSubmit(async (field) => {
+    console.log();
+  })
   return (
     <>
       <section>
@@ -10,17 +16,37 @@ function LoginPage() {
         </a>
       </section>
       <h1>Login</h1>
-      <div className="card">
-        <input type="email" name="" id="email" placeholder="Email" />
+      <form
+        onSubmit={onSubmit}
+      >
+        {
+          errors.email && (
+            <p className='textitos'>Email is required</p>
+          )
+        }
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("email", { required: true })}
+        />
         <br />
-        <input type="password" name="" id="password" placeholder="Password" />
+        <br />
+        {
+          errors.password && (
+            <p className='textitos'>Password is required</p>
+          )
+        }
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password", { required: true })}
+        />
         <br />
         <br />
-        <button >Log in</button>
-        <p>
-          Dont have a account? <a href="/account/register">Register</a>
-        </p>
-      </div>
+        <button type="submit" className='startButton'>Log in</button>
+
+        <p>Already have a account? <a href="/account/login">Log in </a></p>
+      </form>
     </>
   );
 }

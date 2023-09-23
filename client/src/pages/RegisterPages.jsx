@@ -68,7 +68,6 @@ function RegisterPages() {
         }
         <p>Already have a account? <a href="/account/login">Log in </a></p>
       </form>
-      
     </>
   );
 }
