@@ -6,7 +6,15 @@ const user = await collectionGen("User");
 const appUser = Router();
 
 appUser.post('/login', async (req, res) => {
-    res.send('Login successful');
+    try {
+        const { email, password } = req.body;
+        //* verify credentials
+        const verifyCredentials = await user.findOne({ email, password });
+        if (!verifyCredentials) return res.status(404).json({ message: "Incorrect email or password" });
+        res.send({user:verifyCredentials});
+    } catch (error) {
+        console.log(error);
+    }
 });
 appUser.post('/register', async (req, res) => {
     try {
