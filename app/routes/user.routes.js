@@ -11,9 +11,14 @@ appUser.post('/login', async (req, res) => {
         //* verify credentials
         const verifyCredentials = await user.findOne({ email, password });
         if (!verifyCredentials) return res.status(404).json({ message: "Incorrect email or password" });
-        res.send({user:verifyCredentials});
+        //*sent id into cookies headers
+        const {_id} = verifyCredentials
+        const token = await createAccessToken({ _id });
+        res.cookie('token', token);
+        res.json({user:verifyCredentials});
     } catch (error) {
         console.log(error);
+        res.status(500).json({message: error.message});
     }
 });
 appUser.post('/register', async (req, res) => {
