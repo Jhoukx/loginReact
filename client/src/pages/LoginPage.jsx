@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function LoginPage() {
-  const { register,handleSubmit,formState:{errors}} = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const { signIn, loginError, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  
+
   const onSubmit = handleSubmit(async (field) => {
-    signIn(field); 
+    signIn(field);
   })
   return (
     <>
@@ -57,7 +57,7 @@ function LoginPage() {
         <br />
         <button type="submit" className='startButton'>Log in</button>
 
-        <p>Don't have a account? <a href="/account/register">register </a></p>
+        <p>Don't have a account? <a href="/register">register </a></p>
       </form>
     </>
   );

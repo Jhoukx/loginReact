@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPages from './pages/RegisterPages';
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/authContext';
+import ProtectedRouter from './ProtectedRouter';
 
 function App() {
   return (
@@ -11,9 +12,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<h1>Home page</h1>} />
-          <Route path="/account/login" element={<LoginPage />} />
-          <Route path="/account/register" element={<RegisterPages />} />
-          <Route path='/profile' element={ <Profile/>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPages />} />
+
+          <Route element={<ProtectedRouter />}>
+            <Route path='/profile' element={<Profile />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -10,19 +10,19 @@ function RegisterPages() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/profile") 
+    if (isAuthenticated) navigate("/profile")
   }, [isAuthenticated])
 
   const onSubmit = handleSubmit(async (values) => {
     signUp(values);
   })
-  
+
   return (
     <>
       <h1>Register</h1>
       <form
         onSubmit={onSubmit}
-      > 
+      >
         {
           errors.username && (
             <p className='textitos'>Username is required</p>
@@ -66,7 +66,7 @@ function RegisterPages() {
             {registerError}
           </p>
         }
-        <p>Already have a account? <a href="/account/login">Log in </a></p>
+        <p>Already have a account? <a href="/login">Log in </a></p>
       </form>
     </>
   );
