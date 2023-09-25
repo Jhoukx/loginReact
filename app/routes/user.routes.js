@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { collectionGen } from "../connection/connection.js";
 import { createAccessToken } from "../libs/jwt.js";
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config({path:'../../.env'});
 
 const user = await collectionGen("User");
 const appUser = Router();
@@ -14,7 +17,10 @@ appUser.post('/login', async (req, res) => {
         //*sent id into cookies headers
         const {_id} = verifyCredentials
         const token = await createAccessToken({ _id });
-        res.cookie('token', token);
+        res.cookie('token', token, {
+            secure:true,
+            sameSite: 'none'
+        });
         res.json({user:verifyCredentials});
     } catch (error) {
         console.log(error);
@@ -46,5 +52,22 @@ appUser.post('/register', async (req, res) => {
     }
 });
 
+appUser.get('/verify', async(req, res) => {
+    try {
+        const {token} = req.cookies
+        if (!token) return res.status(401).json({message:"Token is required"});
+        
+        
+        jwt.verify(token, process.env.JWT_PASSWORD, async(err, data) => {
+            if (err) return res.status(401).json({ message: 'Unauthorized user' });
 
+            const userFound = await user.findOne(data._id)
+            if (!userFound) return res.status(401).json({ message: 'User is not registered'})
+            res.json(userFound);
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({message:error.message})
+    }
+});
 export default appUser;
