@@ -9,7 +9,11 @@ function LoginPage() {
   const { signIn, loginError, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/profile");
+    }
+  })
   const onSubmit = handleSubmit(async (field) => {
     signIn(field);
   })
