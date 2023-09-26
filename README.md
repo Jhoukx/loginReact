@@ -68,7 +68,7 @@ Para probar el login debe ejecutar los siguientes comandos:
 
 ​		**Expected Output**
 
-    ```bash
+    ```bash 
       VITE v4.4.9  ready in 161 ms
 
       ➜  Local:   http://127.0.0.1:5026/
