@@ -35,6 +35,14 @@ export const AuthProvider = ({ children }) => {
             setLoginError(error.response.data.message);
         }
     }
+    const logOut = () => {
+        try {
+            setIsAuthenticated(false);
+            setUser(null);
+        } catch (error) {
+            console.log('Error logOut',error);
+        }
+    }
     useEffect(() => {
         async function checkLogin() {
             try {
@@ -62,7 +70,8 @@ export const AuthProvider = ({ children }) => {
             user,
             isAuthenticated,
             registerError,
-            loginError
+            loginError,
+            logOut
         }}>
             {children}
         </AuthContext.Provider >
