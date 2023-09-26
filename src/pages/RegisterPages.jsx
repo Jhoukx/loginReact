@@ -8,7 +8,7 @@ function RegisterPages() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { signUp, isAuthenticated, registerError } = useAuth();
   const navigate = useNavigate()
-
+  
   useEffect(() => {
     if (isAuthenticated) navigate("/profile")
   }, [isAuthenticated])

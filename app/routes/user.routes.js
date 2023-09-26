@@ -21,7 +21,7 @@ appUser.post('/login', async (req, res) => {
             secure:true,
             sameSite: 'none'
         });
-        res.json({user:verifyCredentials});
+        res.json(verifyCredentials);
     } catch (error) {
         console.log(error);
         res.status(500).json({message: error.message});
